@@ -8,9 +8,10 @@ import (
 func init() {
 	beego.Router("/", &controllers.MainController{})
 	beego.Router("/hello-world/:id([0-9]+)", &controllers.MainController{}, "get:HelloSitepoint")
-	beego.Router("/manage/add", &controllers.ManageController{}, "get,post:Add")
-	beego.Router("/manage/view", &controllers.ManageController{}, "get:View")
-	beego.Router("/manage/home", &controllers.ManageController{}, "*:Home")
-	beego.Router("/manage/delete/:id([0-9]+)", &controllers.ManageController{}, "*:Delete")
-	beego.Router("/manage/update/:id([0-9]+)", &controllers.ManageController{}, "*:Update")
+	beego.Router("/manage/", &controllers.ManageController{}, "get:Index")
+	beego.Router("/manage/new", &controllers.ManageController{}, "get:New;post:Post")
+	beego.Router("/manage/show/?:id([0-9]+)", &controllers.ManageController{}, "get:Show")
+	beego.Router("/manage/edit/?:id([0-9]+)", &controllers.ManageController{}, "get:Edit")
+	beego.Router("/manage/?:id([0-9]+)", &controllers.ManageController{}, "delete:Delete")
+	beego.Router("/manage/?:id([0-9]+)", &controllers.ManageController{}, "put:Put")
 }

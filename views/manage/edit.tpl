@@ -1,14 +1,5 @@
 <div class="container">
   <div class="row">
-    <div class="hero-text">
-     <h1>Add New Article</h1>
-     <p class="lead">Add a new article to your account. Once it's successfuly added, you'll be redirected back to your current articles list.</p>
-   </div>
- </div>
-</div>
-</div>
-<div class="container">
-  <div class="row">
 
     <h2>Article Details</h2>
 
@@ -21,7 +12,8 @@
     {{end}}
 
     <p>
-      <form role="form" id="user" action="{{urlfor "ManageController.Post"}}" method="POST">
+      <form role="form" id="user" action="{{urlfor "ManageController.Put" ":id" .Article.Id}}" method="POST">
+         <input type="hidden" name="_method" value="PUT" />
         <div class="form-group {{if .Errors.Name}}has-error has-feedback{{end}}">
           <label for="name">Article name： {{if .Errors.Name}}({{.Errors.Name}}){{end}}</label>
           <input name="name" type="text" value="{{.Article.Name}}" class="form-control" tabindex="1" />
@@ -40,8 +32,8 @@
 <!--
         {#{.Form | renderform}#}
 -->
-        <input type="submit" value="Create Article" class="btn btn-default" tabindex="4" /> &nbsp;
-        <a href="{{urlfor "ManageController.Index"}}" class="btn btn-default" title="don't create the article">Cancel</a>
+        <input type="submit" value="Update Article" class="btn btn-default" tabindex="4" /> &nbsp;
+        <a href="{{urlfor "ManageController.Index"}}" class="btn btn-default" title="don't update the article">Cancel</a>
       </form>
     </p>
   </div>
